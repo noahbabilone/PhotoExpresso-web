@@ -2,9 +2,9 @@
 
 namespace AppController\Table;
 
-use AppModel\Table;
+use AppModel\TablePDO;
 
-class ClientTable extends Table{
+class ClientTablePDO extends TablePDO{
     
     public function all()
     {

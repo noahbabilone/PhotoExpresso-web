@@ -1,7 +1,7 @@
 <?php
 use AppModel\Database;
 use AppModel\Config;
-use AppController\Table\Table;
+use AppModel\TablePDO;
 
 /**
  * @class App
