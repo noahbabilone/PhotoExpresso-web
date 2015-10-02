@@ -1,4 +1,4 @@
-###PhotoExpresso By Groupe1 Estiam (Les Fantastique) 
+###PhotoExpresso By Groupe1 Estiam (Les 4 Fantastiques) 
 *Lanouer 
 *Rachid 
 *Thomas 
