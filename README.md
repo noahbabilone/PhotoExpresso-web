@@ -1,2 +1,5 @@
-#Developper par Group1 Estiam : Yann Lanoueur Rachide Thomas ..
-:)
+###PhotoExpresso By Groupe1 Estiam (Les Fantastique) 
+*Lanouer 
+*Rachid 
+*Thomas 
+*Yann
