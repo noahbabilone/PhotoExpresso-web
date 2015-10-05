@@ -1,18 +1,25 @@
 <?php
 namespace AppModel;
+use AppModel\DatabasePDO;
+
 
 /**
  * @Class
  */
-class Table
+class TablePDO
 {
     protected $table;
     protected $db;
 
-    public function __construct(Database $db)
+    public function __construct()
     {
-        $this->db = $db;  // l'injection de dépendances 
-        //var_dump($this->db);
+//        echo "tablePDO" .get_class($bd);
+         $config = Config::getInstance(ROOT.'/public/Config.php');
+         $this->db= new MysqlDatabase ($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), 
+            $config->get('db_host'));
+        
+        //print_r(debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT));
+        //print_r($this->db);
         if (is_null($this->table)) {
             //Factory
             $parts = explode('\\', get_class($this));

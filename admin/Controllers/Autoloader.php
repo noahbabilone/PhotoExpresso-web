@@ -19,7 +19,7 @@
 			{
 				$class = str_replace(__NAMESPACE__.'\\','', $class);
 				$class = str_replace('\\', '/', $class);
- 				echo ROOT."/Controllers/".$class.".php ****<br>";
+/* 				echo ROOT."/Controllers/".$class.".php ****<br>";*/
 				require ROOT."/Controllers/".$class.".php";
 			}
 

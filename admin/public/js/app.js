@@ -1,4 +1,4 @@
-$().ready(function () {
+$(document).ready(function () {
     $("#connexionAdmin").submit(function (e) {
         e.preventDefault();
 
@@ -17,16 +17,52 @@ $().ready(function () {
                 success: function (data) {
                     console.log(data);
                     var resultat = $.parseJSON(data);
-                    if (resultat.isConnected){
+                    if (resultat.isConnected) {
                         window.location.href = 'public/index.php'
                     }
                 }
 
 
             });
-        }else{
+        } else {
             console.log("Test");
         }
 
     }); //end Submit
+
+    var oTableCommande =$('#dataTables-example').DataTable({
+        "aoColumns": [
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px"}
+        ],
+        responsive: true,
+        stateSave: true,
+        "processing": true,
+        //"bServerSide": true,
+
+        "language": {
+            "sProcessing": "Traitement en cours...",
+            "sSearch": "Recherche globale&nbsp;:",
+            "sLengthMenu": "Afficher  _MENU_ &eacute;l&eacute;ments",
+            "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+            "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            "sInfoPostFix": "",
+            "sLoadingRecords": "Chargement en cours...",
+            "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            "sEmptyTable": "Aucune donnée disponible dans le tableau",
+            "oPaginate": {
+                "sFirst": "Premier",
+                "sPrevious": "Pr&eacute;c&eacute;dent",
+                "sNext": "Suivant",
+                "sLast": "Dernier"
+            }
+
+        }
+    });
 });
+

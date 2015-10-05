@@ -6,7 +6,7 @@
 	/**
 	* @Class Database
 	*/
-	class  Database{
+	class  MysqlDatabase extends DatabasePDO{
 		private $db_name;
 		private $db_user;
 		private $db_pass;
@@ -27,15 +27,19 @@
 		{
 			if ($this->pdo === null)
 			{
-			    //$bdd = new PDO('mysql:host=sql.group1.estiam.com;dbname=yannick;charset=utf8', 'yannick', 'estiam94');
-				 // echo ('mysql:host=sql.group1.estiam.com;dbname=yannick;charset=utf8'. 'yannick'. 'estiam94');
-                    
+			    try {
+                $bdd = new PDO('mysql:host=sql.group1.estiam.com;dbname=photoexpressodb;charset=utf8', 'yannick', 'estiam94');
                 //echo 'mysql:host='.$this->db_host.';dbname='.$this->db_name.';charset=utf8'.$this->db_user.
                 //$this->db_pass ."<br>";
-                $bdd = new PDO('mysql:host='.$this->db_host.';dbname='.$this->db_name.';charset=utf8',$this->db_user, $this->db_pass);
+    /*                $bdd = new PDO('mysql:host='.$this->db_host.';dbname='.$this->db_name.';charset=utf8',$this->db_user, $this->db_pass);*/
 				$bdd->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 				$this->pdo= $bdd;
+                                } catch (PDOException $e) {
+                    print "Erreur !: " . $e->getMessage() . "<br/>";
+                    die();
+                }
 			}
+           // var_dump($this->pdo);
 			return $this->pdo;
 		}
 

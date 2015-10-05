@@ -6,7 +6,7 @@ class DBAuth
 {
 
     private $db;
-    public function __construct(Database $db)
+    public function __construct(DatabasePDO $db)
     {
         $this->db = $db;
     }
@@ -41,8 +41,9 @@ class DBAuth
     public function forbidden()
     {
 //      header ('HTTP/1.0 403 Forbidden');
-        die ('Acces interdit ou vous êtes plus connecté, veuillez vous connectez <a href="../index.php?p=login" >en cliquant ici </a>');
-
+        die ('Acces interdit ou vous êtes plus connecté, veuillez vous connectez <a href="../index.php?p=login" >en 
+        cliquant ici </a>');
+        header ('location: ../index.php');
     }
             
     public function notFound()

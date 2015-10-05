@@ -25,6 +25,30 @@ if (isset($_GET['p'])) {
 
 if ($page === 'dashboard') {
     $controller->index();
-}else {
+}else if ($page === 'logout') {
+    $controller->logout();
+}else if ($page === 'commandes') {
+    $controller->commandes();
+}else if ($page === 'commandes.en_cours_d_impression') {
+    $controller->etatCommande(1);
+}else if ($page === 'commandes.imprimees') {
+    $controller->etatCommande(2);
+}else if ($page === 'commandes.expediees') {
+    $controller->etatCommande(3);
+}else if ($page === 'commandes.annulees') {
+    $controller->etatCommande(4);
+}else if ($page === 'produits') {
+    $controller->produits();
+}else if ($page === 'produit.ajout') {
+    $controller->ajoutProduit();
+}else if ($page === 'users') {
+    $controller->users();
+}else if ($page === 'users.clients') {
+    $controller->clients();
+}  
+else {
      $controller->notFound();
 }
+
+
+
