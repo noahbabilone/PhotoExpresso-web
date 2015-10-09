@@ -64,7 +64,6 @@ class App
        // echo $class_name;
         if($this->getDb()== null)
             die("die");
-        
        /* else
             echo get_class($this->getDb());*/
         return new $class_name();

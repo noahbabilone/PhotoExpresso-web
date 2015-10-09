@@ -13,6 +13,7 @@ class TablePDO
 
     public function __construct()
     {
+        
 //        echo "tablePDO" .get_class($bd);
          $config = Config::getInstance(ROOT.'/public/Config.php');
          $this->db= new MysqlDatabase ($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), 

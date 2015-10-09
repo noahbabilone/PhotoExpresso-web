@@ -5,3 +5,14 @@
 .txt-right{
     float: right;
 }
+
+
+#profil {
+    float: left;
+    margin-right: 10px;
+}
+
+.profil-user{
+    border: 1px solid white;
+    margin-left: 120px;
+}

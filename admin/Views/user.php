@@ -45,14 +45,19 @@
                                                   <td>{$client->codePostal}</td>
                                                   <td>{$client->pays}</td>
                                                 <td>
-                                                <span>
-                                                    <a href='#' class='btn btn-default btn-xs btn-info'> 
-                                                    <i class='fa fa-cog'></i></a>       
-                                                </span>
-                                                <span>
-                                                    <a href='#' class='btn btn-default btn-xs btn-danger'> <i 
-                                                     class='fa fa-trash-o'></i></a>       
-                                                </span>
+                                                <button type='button'  class='btn btn-xs btn-info editObjet'  
+                                                        id='client-{$client->idPersonne}' data-toggle='modal' 
+                                                        name='editClient' data-target='#editObjet'   >
+                                                   <i class='fa fa-cog'></i>
+                                                    </button>
+                                                    <input type='hidden' class='val-client-{$client->idPersonne}' 
+                                                    value='{$client->idPersonne}' />
+                                                    
+                                                    <button type='button'  class='btn btn-xs btn-danger suppObjet' 
+                                                    name='suppressionClient' id='client-{$client->idPersonne}'
+                                                    data-toggle='modal' data-target='#suppObjet'>
+                                                     <i class='fa fa-trash-o'></i>  
+                                                </button>
                                              </td>
                                         </tr>";
 

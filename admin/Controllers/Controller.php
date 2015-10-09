@@ -9,6 +9,7 @@ class Controller
 
     protected $viewPath;
     protected $template = 'default';
+    protected $templateVide= 'vide';
 
     //protected $model_name;
 
@@ -37,6 +38,8 @@ class Controller
         $content = ob_get_clean();
         require($this->viewPath . '/' . $this->template . '.php');
     }
+
+
 
 
 }

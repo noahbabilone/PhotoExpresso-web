@@ -37,6 +37,12 @@ class UsersController extends Controller
         $commandes = $this->Commande->all();
         $this->render('commandes', compact("commandes"));
     }
+    
+    public function getCommande($idCommande)
+    {
+        $commande = $this->Commande->getCommande($idCommande);
+        $this->popup('viewCommande', compact("commande"));
+    }
 
     /*
      * 1:En cours d'impression,2: Imprimée, 3:Expédiée,4:Annulée

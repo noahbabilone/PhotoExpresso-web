@@ -21,8 +21,6 @@ $(document).ready(function () {
                         window.location.href = 'public/index.php'
                     }
                 }
-
-
             });
         } else {
             console.log("Test");
@@ -30,14 +28,72 @@ $(document).ready(function () {
 
     }); //end Submit
 
-    var oTableCommande =$('#dataTables-example').DataTable({
+
+    $(".editObjet").click(function (e) {
+        console.log("btn commande");
+        e.preventDefault();
+        var $this = $(this);
+        console.log($this);
+        var idCMD = $(".val-" + $this.attr('id')).val();
+        /*
+         var idCMD = $this.closest("tr").find("td").first().val();
+         */
+
+        console.log(idCMD);
+
+        $.post("ajaxphp/ajax.php", {
+            action: "editCommande",
+            idCommande: idCMD
+        }, function (data) {
+            //permet d'afficher le retour ajax                  
+            console.log("fait");
+            $("#idContent").html(data);
+        });
+    });
+
+
+    $(".suppObjet").click(function (e) {
+        e.preventDefault();
+        var $this=$(this);
+        var nameAction= $this.attr("name");
+        var titreModal= "Titre Modal", contenuModal="Contenu Modal";
+
+        console.log(nameAction);
+        switch (nameAction){
+            case "suppressionCommande":
+                titreModal = " de la commande N°"+$(".val-" + $this.attr('id')).val();     
+                contenuModal="cette commande" ;
+                break; 
+            case "suppressionClient":
+                titreModal = "du client N°"+$(".val-" + $this.attr('id')).val();     
+                contenuModal="cet client" ;
+                break;
+            case "suppressionFormat":
+                titreModal = "du Format N°" + $(".val-" + $this.attr('id')).val();
+                contenuModal = "cet format";
+                break;
+        }
+        
+        $.get("ajaxphp/suppression.php",{
+                "titreModal": titreModal, 
+                "contenuModal":contenuModal
+            }
+        ).done(function (data) {
+                $("#contenuSupp").html(data);
+            });
+    });
+    
+      
+
+
+    var oTableCommande = $('#dataTables-example').DataTable({
         "aoColumns": [
             {"sWidth": "50px"},
             {"sWidth": "50px"},
             {"sWidth": "50px"},
             {"sWidth": "50px"},
             {"sWidth": "50px"},
-            {"sWidth": "50px"}
+            {"sWidth": "50px", "bSortable": false}
         ],
         responsive: true,
         stateSave: true,
@@ -64,5 +120,7 @@ $(document).ready(function () {
 
         }
     });
+
+
 });
 

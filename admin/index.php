@@ -86,7 +86,36 @@
 <script src="public/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="public/js/app.js"></script>
+<script type="text/javascript">
+     $("#connexionAdmin").submit(function (e) {
+        e.preventDefault();
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        if ($.trim(username).length > 0 && $.trim(password).length > 0) {
+            var dataString = 'username=' + username + '&password=' + password;
+            console.log(dataString);
+
+            $.ajax({
+                type: "POST",
+                url: "public/ajaxphp/connexion.php",
+                data: dataString,
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+                    var resultat = $.parseJSON(data);
+                    if (resultat.isConnected) {
+                        window.location.href = 'public/index.php';
+                    }
+                }
+            });
+        } else {
+            console.log("Pas de pramètre");
+        }
+
+    }); //end Submit
+</script>
 
 </body>
 

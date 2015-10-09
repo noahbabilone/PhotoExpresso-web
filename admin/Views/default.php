@@ -1,5 +1,5 @@
 <?php
-   $app= App::getInstance();
+$app = App::getInstance();
 //      use \Core\Auth\DBAuth;
 ?>
 <!DOCTYPE html>
@@ -306,7 +306,8 @@
                             arrow"></span></a>
                         <ul class="nav nav-second-level">
 
-                            <li><a href="index.php?p=produits" alt="" title="Tous les produits">Tous les Produits</a></li>
+                            <li><a href="index.php?p=produits" alt="" title="Tous les produits">Tous les Produits</a>
+                            </li>
                             <li><a href="index.php?p=produit.ajout">Ajouter un produits</a></li>
                             <li><a href="#" title="Toutes les catégories">Gestion des Catégories </a></li>
 
@@ -460,14 +461,17 @@
 
 
 </div>
+
+<?php include(ROOT . "/Views/viewCommande.php"); ?>
+
+
 <!-- /#wrapper -->
 
 <!-- jQuery -->
 <script src="../public/bower_components/jquery/dist/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../public/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
@@ -481,3 +485,4 @@
 </body>
 
 </html>
+

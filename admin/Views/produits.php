@@ -46,14 +46,19 @@
                                                   <td>{$format->prix}</td>
                                                   <td>{$format->libelle}</td>
                                                 <td>
-                                                <span>
-                                                    <a href='#' class='btn btn-default btn-xs btn-info'> 
-                                                    <i class='fa fa-cog'></i></a>       
-                                                </span>
-                                                <span>
-                                                    <a href='#' class='btn btn-default btn-xs btn-danger'> <i 
-                                                     class='fa fa-trash-o'></i></a>       
-                                                </span>
+                                                <button type='button'  class='btn btn-xs btn-info editObjet'  
+                                                        id='format-{$format->idFormats}' data-toggle='modal' 
+                                                        name='editFormat' data-target='#editObjet'   >
+                                                   <i class='fa fa-cog'></i>
+                                                    </button>
+                                                    <input type='hidden' class='val-format-{$format->idFormats}' 
+                                                    value='{$format->idFormats}' />
+                                                    
+                                                    <button type='button'  class='btn btn-xs btn-danger suppObjet' 
+                                                    name='suppressionFormat' id='format-{$format->idFormats}'
+                                                    data-toggle='modal' data-target='#suppObjet'>
+                                                     <i class='fa fa-trash-o'></i>  
+                                                </button>
                                              </td>
                                         </tr>";
 
