@@ -28,27 +28,24 @@
     <body>
     
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Photo<span class="text-primary">Expresso</span></a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="presentation.php">Présentation</a></li>
-                        <li><a href="contact.php">Contact</a></li>
+        <div class="container-fluid">
+    <!-- Second navbar for categories -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Photo<span class="text-primary">Expresso</span></a>
+        </div>
     
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" title="Connexion"> Connexion</a></li>
                         <li><a href="#" title="Se connecter à mon compte">Inscription</a></li>
                         <li class="dropdown">
@@ -60,12 +57,33 @@
                             </ul>
                         </li>
                     </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
+            <ul class="nav navbar-nav navbar-left">
+            
+            <li>
+              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse1" aria-expanded="false" aria-controls="nav-collapse1">Categories</a>
+            </li>
+            <li><a href="presentation.php">Qualité</a></li>
+            <li><a href="team.php">Qui Sommes Nous ?</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            
+          </ul>
+          <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">
+            <li><a href="1tirage.php">Dévloppement Photo</a></li>
+                <li><a href="2Polaroid.php">Polaroid</a></li>
+                <li><a href="3zoom.php">Agrandissement Photo</a></li>
+                <li><a href="4poster.php">Poster</a></li>
+                <li><a href="5acrylique.php">Acrylique</a></li>
+                <li><a href="6panorama.php">Panorama</a></li>                                
+          </ul>
+            
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
     
+ 
+       
+</div>
+  
         <!-- Page Content -->
         <div class="container">
     
@@ -84,24 +102,24 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="https://bootstrapdocs.com/v2.2.2/docs/assets/img/examples/slide-01.jpg" alt="image" class="img-responsive img-rounded">
+                            <img src="https://loxleycolour.blob.core.windows.net/images/homepage/wall-products.jpg" alt="image" class="img-responsive img-rounded">
                             <div class="carousel-caption">
-                                <h3>First slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                <h3></h3>
+                                <p>Photo bla bla bla</p>
                             </div>
                         </div>
                         <div class="item">
-                            <img src="https://bootstrapdocs.com/v2.2.2/docs/assets/img/examples/slide-02.jpg" alt="2" class="img-responsive img-rounded">
+                            <img src="https://loxleycolour.blob.core.windows.net/images/homepage/apertura_1612_launch.jpg" alt="2" class="img-responsive img-rounded">
                             <div class="carousel-caption">
-                                <h3> Second slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                <h3></h3>
+                                <p>Album bla bla bla</p>
                             </div>
                         </div>
                         <div class="item">
-                            <img src="https://bootstrapdocs.com/v2.2.2/docs/assets/img/examples/slide-03.jpg" alt="3" class="img-responsive img-rounded">
+                            <img src="https://loxleycolour.blob.core.windows.net/images/homepage/hp_banner_studio_offer.jpg" alt="3" class="img-responsive img-rounded">
                             <div class="carousel-caption">
-                                <h3> Third slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                <h3></h3>
+                                <p> Chepa wam.</p>
                             </div>
                         </div>
                     </div>
@@ -118,92 +136,118 @@
                 </div>
             </header>
             
-            <hr>
+            <li></li>
     
     
             <!-- Jumbotron -->
-            <div class="text-center">
-                <h1 class="text-info">Impression photo de qualité pro !!</h1>
-                <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-                <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+            <div class="jumbotron">
+     <div class="media">
+  <div class="pull-right">
+    <a href="#">
+      <img class="pull-right" src="img\bgg.png" alt="..." >
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">Tirages et agrandissements photo, encadrement photo et posters photo</h4>
+    Developpement tirage photo, poster et agrandissement photo : demandez l'impression de vos tirages photo numériques et posters dans le format de votre choix grâce à PhotoExpresso ! Prenez soin de vos plus beaux souvenirs en optant pour une qualité d'impression irréprochable : smartphoto est spécialiste du développement photo et attache une importance particulière à ce que vous puissiez conserver les plus beaux moments partagés avec vos proches. Découvrez notre gamme de développement photo numérique : tirage classique, tirage photo rétro, développement photo en noir et blanc, agrandissement, poster grand format, vous avez l'embarras du choix !
+  </div>
+</div>
+               
+                <p><a class="btn btn-lg btn-success" href="#" role="button">Plus d'info</a></p>
             </div>
             
             <!-- Title -->
-            <div class="row">
-                <div class="col-lg-12 ">
-                    <h2><!-- class="page-header">-->Nos produits</h2>
-                </div>
-            </div>
+            <ol class="breadcrumb">
+                <li><h4><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>Votre tirage photo en qualité professionelle<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></h4></li>
+            </ol>
             <!-- /.row -->
             
             <!-- Page Features -->
             <div class="row text-center">
     
-                <div class="col-md-3 col-sm-6 hero-feature">
+                  <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="img\tirage\tirage.jpg" alt="">
                         <div class="caption">
-                            <h3>Produit Titre</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <h3>Tirage classique</h3>
+                            <p>Brillance des couleurs, longévité et résistance à la lumière. Conservez vos plus beaux souvenirs et contemplez vos photos aussi souvent que vous le souhaitez ! Disponible sur papier Premium et Standard.</p>
                             <p>
-                                <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                                <a href="1tirage.php" class="btn btn-primary">Achete la!</a> <a href="#" class="btn btn-default">En savoir plus</a>
                             </p>
                         </div>
                     </div>
                 </div>
     
-                <div class="col-md-3 col-sm-6 hero-feature">
+                  <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="img\tirage\polaroid.jpg" alt="">
                         <div class="caption">
-                            <h3>Produit Titre</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <h3>Polaroid</h3>
+                            <p>Le vintage et le rétro sont tendances. Avec des effets tels que les cadres, modèles et filtres créatifs, les photos numériques se conforment au look demandé de ces temps passés</p>
                             <p>
-                                <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                                <a href="2Polaroid.php" class="btn btn-primary">Achete la!</a> <a href="#" class="btn btn-default">En savoir plus</a>
                             </p>
                         </div>
                     </div>
                 </div>
     
-                <div class="col-md-3 col-sm-6 hero-feature">
+                  <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="img\tirage\enlargement.jpg" alt="">
                         <div class="caption">
-                            <h3>Produit Titre</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <h3>Agrandissement Photo</h3>
+                            <p>Vous pouvez facilement commander vos plus belles photos chez PhotoExpresso et les faire imprimer en format XXL,</p>
                             <p>
-                                <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                                <a href="3zoom.php" class="btn btn-primary">Achete la!</a> <a href="#" class="btn btn-default">En savoir plus</a>
                             </p>
                         </div>
                     </div>
                 </div>
     
-                <div class="col-md-3 col-sm-6 hero-feature">
+                </div>
+            <div class="row text-center">
+    
+                  <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="img\tirage\poster.jpg" alt="">
                         <div class="caption">
-                            <h3>Produit Titre</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <h3>Poster</h3>
+                            <p>Transformez vos photos en poster ou pêle-mêle personnalisé format XXL ! Optez pour la qualité photo professionnelle</p>
                             <p>
-                                <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                                <a href="4poster.php" class="btn btn-primary">Achete la!</a> <a href="#" class="btn btn-default">En savoir plus</a>
                             </p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.row -->
-            <hr>
-             <!--Footer--> 
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; <a href="group1.estiam.com">Estiam Groupe-1 </a>. 2015</p>
+    
+                  <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img\tirage\acrylique.jpg" alt="">
+                        <div class="caption">
+                            <h3>Acrylique</h3>
+                            <p>Vos photos sous verre acrylique : une brillance extrême, des couleurs étincelantes, un effet de profondeur fascinant</p>
+                            <p>
+                                <a href="5acrylique.php" class="btn btn-primary">Achete la!</a> <a href="#" class="btn btn-default">En savoir plus</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </footer>
-        </div>
-        <!-- /.container -->
-    <!--
+    
+                  <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img\tirage\panorama.jpg" alt="">
+                        <div class="caption">
+                            <h3>Panorama</h3>
+                            <p>Nous vous proposons une gamme complète de formats standards, panoramiques, carrés, 16:9, 4:3 ou 3:2 adaptés à votre appareil photo numérique.</p>
+                            <p>
+                                <a href="6panorama.php" class="btn btn-primary">Achete la!</a> <a href="#" class="btn btn-default">En savoir plus</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+    
+                </div>
+                <div class="jumbotron">
         <footer class="bs-footer">
             <div class="container">
                 <div class="row">
@@ -231,8 +275,8 @@
                     </div>
                 </div>
             </div>
-        </footer>-->
-        
+        </footer>
+                </div>
         <!-- jQuery -->
         <script src="js/jquery.js"></script>
         <!-- Bootstrap Core JavaScript -->

@@ -68,14 +68,6 @@
     <!-- /.container -->
 </nav>
 
-<header class="sb-page-header">
-    <div class="container">
-        <h1>Impression photo </h1>
-
-        <p>A simple, unstyled, shop item page template featuring Bootstrap snippets from Bootsnipp.</p>
-    </div>
-</header>
-
 <div class="container">
     <ol class="breadcrumb">
         <li><a href="/index.html">PhotoExpresso</a></li>
