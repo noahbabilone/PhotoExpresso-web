@@ -10,6 +10,9 @@
                 <li class="active">Produits</li>
             </ol>
         </div>
+        <div class="col-lg-12">
+            <?php include ROOT."/public/includes/notifications.php";  ?>
+        </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
@@ -18,9 +21,12 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-shopping-cart fa-fw"></i> Produits
+                    <i class="fa fa-bitbucket"></i> Formats
                     <div class="pull-right">
-                        <a href="#" class="btn  btn-success btn-xs">Ajouter</a>
+                        <button type='button' class='btn btn-xs btn-success btn-ajout' id="AddFormat"
+                                data-toggle='modal'
+                                name='editFormat' data-target='#editObjet'>Ajouter
+                        </button>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -29,14 +35,15 @@
                         <div class="dataTable_wrapper">
                             <table
                                 class="table table-striped table-hover"
-                                id="dataTables-example">
+                                id="dataTables-format">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Lib Format</th>
-                                    <th>Dimension</th>
+                                    <th>Hauteur</th>
                                     <th>Prix</th>
-                                    <th>Libelle Type</th>
+                                    <th>Type format</th>
+                                    <th>Format papier</th>
                                     <th>Actions</th>
                                 </tr>
                                 </tr>
@@ -52,10 +59,11 @@
                                                   <td>{$format->hauteur}</td>
                                                   <td>{$format->prix}</td>
                                                   <td>{$format->libelle}</td>
+                                                  <td>{$format->finition}-{$format->couleur}</td>
                                                 <td>
                                                 <button type='button'  class='btn btn-xs btn-info editObjet'  
                                                         id='format-{$format->idFormats}' data-toggle='modal' 
-                                                        name='editFormat' data-target='#editObjet'   >
+                                                        name='formatEdit' data-target='#editObjet'   >
                                                    <i class='fa fa-cog'></i>
                                                     </button>
                                                     <input type='hidden' class='val-format-{$format->idFormats}' 
@@ -90,24 +98,40 @@
 </div>
 <!-- /.container-fluid -->
 
+<script>
+     $('#dataTables-format').DataTable({
+        "aoColumns": [
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px"},
+            {"sWidth": "50px", "bSortable": false}
+        ],
+        responsive: true,
+        stateSave: true,
+        "processing": true,
+        //"bServerSide": true,
 
-<div class="modal fade modifier-commande">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        "language": {
+            "sProcessing": "Traitement en cours...",
+            "sSearch": "Recherche globale&nbsp;:",
+            "sLengthMenu": "Afficher  _MENU_ &eacute;l&eacute;ments",
+            "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+            "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            "sInfoPostFix": "",
+            "sLoadingRecords": "Chargement en cours...",
+            "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            "sEmptyTable": "Aucune donnée disponible dans le tableau",
+            "oPaginate": {
+                "sFirst": "Premier",
+                "sPrevious": "Pr&eacute;c&eacute;dent",
+                "sNext": "Suivant",
+                "sLast": "Dernier"
+            }
+
+        }
+    });
+</script>

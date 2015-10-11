@@ -29,7 +29,7 @@ $sql_details = array(
 );
 
 // DB table to use
-$table = 'view_commande';
+$table = 'view_commandes';
 
 
 // Table's primary key
@@ -49,7 +49,7 @@ $columns = array(
     array('db' => 'adresseFacturation', 'dt' => '6'),
     array('db' => 'villeFacturation', 'dt' => '7'),
     array('db' => 'paysFacturation', 'dt' => '8'),
-    array('db' => 'idCommande', 'dt' => '9'),
+    array('db' => 'idEtat', 'dt' => '9'),
     array('db' => 'idCommande', 'dt' => '10')
 );
 

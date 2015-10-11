@@ -103,8 +103,8 @@
                             <?php
                             if (isset($clients)) {
                                 foreach ($clients as $client) {
-                                    echo "<tr id='ligne-client-{$client->idPersonne}'>
-                                                  <td>{$client->idPersonne}</td>
+                                    echo "<tr id='ligne-client-{$client->idClient}'>
+                                                  <td>{$client->idClient}</td>
                                                   <td>{$client->nom}</td>
                                                   <td>{$client->prenom}</td>
                                                   <td>{$client->ville}</td>
@@ -112,15 +112,15 @@
                                                   <td>{$client->pays}</td>
                                                 <td>
                                                 <button type='button'  class='btn btn-xs btn-info editObjet'  
-                                                        id='client-{$client->idPersonne}' data-toggle='modal' 
+                                                        id='client-{$client->idClient}' data-toggle='modal' 
                                                         name='editClient' data-target='#editObjet'   >
                                                    <i class='fa fa-cog'></i>
                                                     </button>
-                                                    <input type='hidden' class='val-client-{$client->idPersonne}' 
-                                                    value='{$client->idPersonne}' />
+                                                    <input type='hidden' class='val-client-{$client->idClient}' 
+                                                    value='{$client->idClient}' />
                                                     
                                                     <button type='button'  class='btn btn-xs btn-danger suppObjet' 
-                                                    name='suppressionClient' id='client-{$client->idPersonne}'
+                                                    name='suppressionClient' id='client-{$client->idClient}'
                                                     data-toggle='modal' data-target='#suppObjet'>
                                                      <i class='fa fa-trash-o'></i>  
                                                 </button>

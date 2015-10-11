@@ -23,6 +23,67 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <i class="fa fa-user"></i> Clients
+                            <span class="txt-right"> 
+                                <a href="index.php?p=users" class="btn  btn-default btn-xs">Afficher Tout</a>
+                            </span>
+                </div>
+                <div class="panel-body">
+                    <!--Contenu-->
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Ville</th>
+                                <th>Code P</th>
+                                <th>Pays</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            if (isset($clients)) {
+                                foreach ($clients as $client) {
+                                    echo "<tr id='ligne-client-{$client->idClient}'>
+                                                  <td>{$client->idClient}</td>
+                                                  <td>{$client->nom}</td>
+                                                  <td>{$client->prenom}</td>
+                                                  <td>{$client->ville}</td>
+                                                  <td>{$client->codePostal}</td>
+                                                  <td>{$client->pays}</td>
+                                                <td>
+                                                <button type='button'  class='btn btn-xs btn-info editObjet'  
+                                                        id='client-{$client->idClient}' data-toggle='modal' 
+                                                        name='clientEdit' data-target='#editObjet'   >
+                                                   <i class='fa fa-cog'></i>
+                                                    </button>
+                                                    <input type='hidden' class='val-client-{$client->idClient}' 
+                                                    value='{$client->idClient}' />
+                                                    
+                                                    <button type='button'  class='btn btn-xs btn-danger suppObjet' 
+                                                    name='suppressionClient' id='client-{$client->idClient}'
+                                                    data-toggle='modal' data-target='#suppObjet'>
+                                                     <i class='fa fa-trash-o'></i>  
+                                                </button>
+                                             </td>
+                                        </tr>";
+
+                                }
+                            }
+                            ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     <i class="fa fa-shopping-cart fa-fw"></i> Commandes
                     <div class="pull-right">
                         <div class="btn-group">
@@ -55,7 +116,8 @@
                                                   <td>{$cmd->prixTTC} €</td>
                                                   <td>{$cmd->libelle}</td>
                                                 <td>
-                                                    <button type='button'  class='btn btn-xs btn-info editObjet'  id='cmd-{$cmd->idCommande}' data-toggle='modal' name='editCommande' data-target='#editObjet'   >
+                                                    <button type='button'  class='btn btn-xs btn-info editObjet' 
+                                                            id='cmd-{$cmd->idCommande}' data-toggle='modal' name='commandeEdit' data-target='#editObjet'   >
                                                        <i class='fa fa-cog'></i>
                                                         </button>
                                                         <input type='hidden' class='val-cmd-{$cmd->idCommande}' 
@@ -81,67 +143,7 @@
         </div>
         <!--col-lg-6-->
 
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-user"></i> Clients
-                            <span class="txt-right"> 
-                                <a href="index.php?p=users" class="btn  btn-default btn-xs">Afficher Tout</a>
-                            </span>
-                </div>
-                <div class="panel-body">
-                    <!--Contenu-->
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Prenom</th>
-                                <th>Ville</th>
-                                <th>Code P</th>
-                                <th>Pays</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            if (isset($clients)) {
-                                foreach ($clients as $client) {
-                                    echo "<tr id='ligne-client-{$client->idPersonne}'>
-                                                  <td>{$client->idPersonne}</td>
-                                                  <td>{$client->nom}</td>
-                                                  <td>{$client->prenom}</td>
-                                                  <td>{$client->ville}</td>
-                                                  <td>{$client->codePostal}</td>
-                                                  <td>{$client->pays}</td>
-                                                <td>
-                                                <button type='button'  class='btn btn-xs btn-info editObjet'  
-                                                        id='client-{$client->idPersonne}' data-toggle='modal' 
-                                                        name='editClient' data-target='#editObjet'   >
-                                                   <i class='fa fa-cog'></i>
-                                                    </button>
-                                                    <input type='hidden' class='val-client-{$client->idPersonne}' 
-                                                    value='{$client->idPersonne}' />
-                                                    
-                                                    <button type='button'  class='btn btn-xs btn-danger suppObjet' 
-                                                    name='suppressionClient' id='client-{$client->idPersonne}'
-                                                    data-toggle='modal' data-target='#suppObjet'>
-                                                     <i class='fa fa-trash-o'></i>  
-                                                </button>
-                                             </td>
-                                        </tr>";
-
-                                }
-                            }
-                            ?>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- </div>-->
         <div class="col-lg-6">
             <div class="panel panel-default">
@@ -159,7 +161,9 @@
                                     <a href="index.php?p=produits">Afficher Tout</a>
                                 </li>
                                 <li>
-                                    <a href="index.php?p=ajout_format">Ajouter </a>
+                                    <a href="#" class='btn-ajout' id="optionFormat"  data-toggle='modal'
+                                name='editFormat' data-target='#editObjet'>Ajouter </a>
+
                                 </li>
                             </ul>
                         </div>
@@ -192,7 +196,7 @@
                                                 <td>
                                                  <button type='button'  class='btn btn-xs btn-info editObjet'  
                                                         id='format-{$format->idFormats}' data-toggle='modal' 
-                                                        name='editFormat' data-target='#editObjet'   >
+                                                        name='formatEdit' data-target='#editObjet'   >
                                                    <i class='fa fa-cog'></i>
                                                     </button>
                                                     <input type='hidden' class='val-format-{$format->idFormats}' 
@@ -246,7 +250,7 @@
                             if (isset($clients)) {
                                 foreach ($clients as $client) {
                                     echo "<tr>
-                                                  <td>{$client->idPersonne}</td>
+                                                  <td>{$client->idClient}</td>
                                                   <td>{$client->nom}</td>
                                                   <td>{$client->prenom}</td>
                                                   <td>{$client->ville}</td>

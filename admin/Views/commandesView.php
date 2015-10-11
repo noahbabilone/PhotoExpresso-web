@@ -53,7 +53,7 @@
                                                     <td>
                                                         <button type='button'  class='btn btn-xs btn-info editObjet' 
                                                            id='cmd-{$cmd->idCommande}' data-toggle='modal' 
-                                                            name='editCommande' data-target='#editObjet'   >
+                                                            name='commandeEdit' data-target='#editObjet'   >
                                                            <i class='fa fa-cog'></i>
                                                             </button>
                                                             <input type='hidden' class='val-cmd-{$cmd->idCommande}' 

@@ -1,18 +1,31 @@
-.btn-y{
-    margin-top:-20px;
+.btn-y {
+    margin-top: -20px;
     margin-bottom: 10px;
 }
-.txt-right{
+
+.txt-right {
     float: right;
 }
-
 
 #profil {
     float: left;
     margin-right: 10px;
 }
 
-.profil-user{
+.profil-user {
     border: 1px solid white;
     margin-left: 120px;
+}
+
+.remove-image {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    z-index: 2;
+}
+
+.img-upload{
+    z-index: 1;
 }

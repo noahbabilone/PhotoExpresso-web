@@ -68,7 +68,7 @@ class TablePDO
         $sql_part = implode(',', $sql_parts);
         return $this->query("UPDATE " . $this->table . " SET " . $sql_part . " WHERE id =?", $attributes);
     }
-
+/*
     public function add($fields)
     {
         $sql_parts = [];
@@ -92,7 +92,7 @@ class TablePDO
             $return[$val->$key] = $val->$value;
         }
         return $return;
-    }
+    }*/
 
   
 

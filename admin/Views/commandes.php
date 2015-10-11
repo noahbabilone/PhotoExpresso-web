@@ -62,7 +62,7 @@
     <!-- /.row -->
 </div>
 <!-- /.container-fluid -->
-
+<script src="//cdn.datatables.net/plug-ins/1.10.9/filtering/type-based/accent-neutralise.js"></script>
 
 <script type="text/javascript">
     $('#table-commandes').DataTable({
@@ -76,22 +76,58 @@
             {"aTargets": [6]},
             {"aTargets": [7]},
             {"aTargets": [8]},
-            {"aTargets": [9]},
+            null,//{"aTargets": [9]},
             {"aTargets": [10]}
         ],
-        "processing": true,
-        "serverSide": true,
+       
+        "processing": false,
+        "serverSide": false,
         "sAjaxSource": "../Models/DatabaseAjax/listes_commandes.php",
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            var etatCommande = "";
+            //0: En attente d'Impression, 1: Imprimée , 2: Expédiée
+
+            if (aData[9] == '0') {
+                etatCommande = "En attente d'Impression";
+            } else if (aData[9] == '1') {
+                etatCommande = "Imprimee";
+            } else if (aData[9] == "3") {
+                etatCommande = "Expediee";
+            } else if (aData[9] == "4") {
+                etatCommande = "Annulee";
+            }
+
+
+            $('td:eq(9)', nRow).html(etatCommande);
             contenu = '<button type="button"  class="btn btn-xs btn-info editObjet"  id="cmd-' + aData[0] + '"';
-            contenu += ' data-toggle="modal" name="editCommande" data-target="#editObjet">';
+            contenu += ' data-toggle="modal" name="commandeEdit" data-target="#editObjet">';
             contenu += '<i class="fa fa-cog"></i></button>';
             contenu += '<input type="hidden" class="val-cmd-' + aData[0] + '" value="' + aData[0] + '" />';
             contenu += '  <button type="button"  class="btn btn-xs btn-danger suppObjet" name="suppressionCommande"';
             contenu += 'id="cmd-' + aData[0] + '" data-toggle="modal" data-target="#suppObjet"><i class="fa fa-trash-o"></i></button>';
-
-
             $('td:eq(10)', nRow).html(contenu);
+
+        }, "bInfo": false,
+        "bPaginate": true,
+        "bFilter": false,
+
+        "language": {
+            "sProcessing": "Traitement en cours...",
+            "sSearch": "Recherche globale&nbsp;:",
+            "sLengthMenu": "Afficher  _MENU_ &eacute;l&eacute;ments",
+            "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+            "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            "sInfoPostFix": "",
+            "sLoadingRecords": "Chargement en cours...",
+            "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            "sEmptyTable": "Aucune donnée disponible dans le tableau",
+            "oPaginate": {
+                "sFirst": "Premier",
+                "sPrevious": "Pr&eacute;c&eacute;dent",
+                "sNext": "Suivant",
+                "sLast": "Dernier"
+            }
 
         }
 
