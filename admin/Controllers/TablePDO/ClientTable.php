@@ -40,6 +40,13 @@ class ClientTable extends TablePDO{
     }
     
     
+   
+     public function delete($idClient)
+    {
+        $result= $this->query("DELETE FROM personne WHERE idPersonne='{$idClient}'");
+        return $result?true:false;
+    }
+    
     
     
     

@@ -38,6 +38,12 @@ class ProduitTable extends TablePDO{
    
     }
     
+    public function deleteFromat($id)
+    {
+        $result= $this->query("DELETE FROM formats WHERE idFormats='{$id}'");
+        return $result?true:false;
+    }
+    
     
     
     

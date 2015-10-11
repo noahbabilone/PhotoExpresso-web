@@ -51,7 +51,7 @@ class UsersController extends Controller
     {
 
         $commandes = $this->Commande->etats($idEtat);
-        $this->render('commandes', compact("commandes"));
+        $this->render('commandesView', compact("commandes"));
     }
 
     public function produits()
@@ -71,9 +71,16 @@ class UsersController extends Controller
         $clients = $this->Client->listesClients();
         $admins = $this->Client->listesAdmins();
 
+        $this->render('user', compact("clients","admins"));
+    }
+    
+    public function clients(){
+        $clients = $this->Client->listesClients();
         $this->render('clients', compact("clients","admins"));
     }
-
+    
+    
+   
 
     /* public function addArticle()
      {

@@ -12,7 +12,7 @@ $app = App::getInstance();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PhotoEpresso - <?= $title; ?></title>
+    <title>PhotoEpresso - Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,6 +35,21 @@ $app = App::getInstance();
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="../public/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../public/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- DataBase Jquery-->
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../public/dist/js/sb-admin-2.js"></script>
+    <script src="../public/js/app.js"></script>
+
 
 </head>
 
@@ -462,25 +477,12 @@ $app = App::getInstance();
 
 </div>
 
-<?php include(ROOT . "/Views/viewCommande.php"); ?>
+<?php include(ROOT . "/Views/pop_Modif_Supp_Objet.php"); ?>
 
 
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="../public/bower_components/jquery/dist/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="../public/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-<!-- DataBase Jquery-->
-<script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="../public/dist/js/sb-admin-2.js"></script>
-<script src="../public/js/app.js"></script>
 
 </body>
 

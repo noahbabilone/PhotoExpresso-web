@@ -1,32 +1,5 @@
 $(document).ready(function () {
-    $("#connexionAdmin").submit(function (e) {
-        e.preventDefault();
-
-        var username = $("#username").val();
-        var password = $("#password").val();
-
-        if ($.trim(username).length > 0 && $.trim(password).length > 0) {
-            var dataString = 'username=' + username + '&password=' + password;
-            console.log(dataString);
-
-            $.ajax({
-                type: "POST",
-                url: "public/ajaxphp/connexion.php",
-                data: dataString,
-                cache: false,
-                success: function (data) {
-                    console.log(data);
-                    var resultat = $.parseJSON(data);
-                    if (resultat.isConnected) {
-                        window.location.href = 'public/index.php'
-                    }
-                }
-            });
-        } else {
-            console.log("Test");
-        }
-
-    }); //end Submit
+   
 
 
     $(".editObjet").click(function (e) {
@@ -42,48 +15,122 @@ $(document).ready(function () {
         console.log(idCMD);
 
         $.post("ajaxphp/ajax.php", {
-            action: "editCommande",
+            action: "commandeEdit",
             idCommande: idCMD
         }, function (data) {
             //permet d'afficher le retour ajax                  
-            console.log("fait");
             $("#idContent").html(data);
         });
     });
 
 
+    /*
+     * Suppression des commandes, des client, des formats 
+     * */
     $(".suppObjet").click(function (e) {
         e.preventDefault();
-        var $this=$(this);
-        var nameAction= $this.attr("name");
-        var titreModal= "Titre Modal", contenuModal="Contenu Modal";
+        var $this = $(this);
+        var nameAction = $this.attr("name"),
+            titreModal = "Titre Modal",
+            contenuModal = "Contenu Modal",
+            idObjet = $(".val-" + $this.attr('id')).val();
+        
+        
 
+        console.log(idObjet);
         console.log(nameAction);
-        switch (nameAction){
+        switch (nameAction) {
             case "suppressionCommande":
-                titreModal = " de la commande N°"+$(".val-" + $this.attr('id')).val();     
-                contenuModal="cette commande" ;
-                break; 
+                titreModal = " de la commande N°" + idObjet;
+                contenuModal = "cette commande";
+                break;
             case "suppressionClient":
-                titreModal = "du client N°"+$(".val-" + $this.attr('id')).val();     
-                contenuModal="cet client" ;
+                titreModal = "du client N°" + idObjet;
+                contenuModal = "cet client";
                 break;
             case "suppressionFormat":
-                titreModal = "du Format N°" + $(".val-" + $this.attr('id')).val();
+                titreModal = "du Format N°" + idObjet;
                 contenuModal = "cet format";
                 break;
         }
-        
-        $.get("ajaxphp/suppression.php",{
-                "titreModal": titreModal, 
-                "contenuModal":contenuModal
+
+        $.get("ajaxphp/suppression.php", {
+                "titreModal": titreModal,
+                "contenuModal": contenuModal,
+                "nameAction": nameAction,
+                "idObjet": idObjet
             }
         ).done(function (data) {
                 $("#contenuSupp").html(data);
             });
     });
-    
-      
+
+    $("#confirmSupp").click(function (e) {
+
+        e.preventDefault();
+        var idObjet = $("#idObjet-Delete").val();
+        var nameAction = $.trim($("#idObjet-Delete").attr("name"));
+        var action = "", message = "";
+        if (idObjet != -1) {
+            console.log(nameAction + "  -- " + idObjet);
+            switch (nameAction) {
+                case "suppressionCommande":
+                    action = "commande"
+                    message = "<b>La commande N°" + idObjet + "</b> a été supprimée !!"
+
+                    break;
+                case "suppressionClient":
+                    action = "client";
+                    message = "<b>Le client N°" + idObjet + "</b> a été supprimé !!"
+
+                    break;
+                case "suppressionFormat":
+                    action = "format";
+                    message = "<b>Le format N°" + idObjet + "</b> a été supprimée !!"
+
+                    break;
+                default:
+                    action = "vide";
+                    message = "vide"
+                    break;
+
+            }
+
+            console.log(action);
+            $.post("ajaxphp/ajax.php", {
+                action: action + "Supp",
+                idObjet: idObjet
+
+            }, function (resultat) {
+                if (resultat) {
+                    $('#suppObjet').modal('hide');
+
+                    if ($(".alert-success").hasClass("hide")) {
+                        $(".message-success").html(message);
+                        $(".alert-success").removeClass("hide");
+                        $(".alert-success").delay(10000).fadeOut(300, function () {
+                            $(this).addClass("hide");
+                        });
+
+                    } else {
+                        $(".message-success").html(message);
+                        $(".alert-success").delay(10000).fadeOut(1000, function () {
+                            $(this).addClass("hide");
+                        });
+
+                    }
+                    $("#ligne-" + action + "-" + idObjet).fadeOut(1000, function () {
+                        $(this).remove();
+                    });
+
+                } else {
+                    console.log("Erreur de suppression action:" + action + " idObjet :" + idObjet);
+                }
+            });
+        }// verif idObj
+
+
+    });
 
 
     var oTableCommande = $('#dataTables-example').DataTable({

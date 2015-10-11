@@ -94,11 +94,7 @@ class TablePDO
         return $return;
     }
 
-    public function delete($idArticle)
-    {
-
-        return $this->query("DELETE FROM " . $this->table . " WHERE id=?", [$idArticle]);
-    }
+  
 
 }// End Class Tables
 

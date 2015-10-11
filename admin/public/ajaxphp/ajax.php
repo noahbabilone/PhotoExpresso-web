@@ -15,7 +15,7 @@ $contenu = "";
 if (isset($_POST["action"]) && !empty($_POST["action"])) {
     $action = $_POST["action"];
     switch ($action) {
-        case   "editCommande":
+        case   "commandeEdit":
             $idCmd = $_POST["idCommande"];
 
             $commande = $app->getTable("Commande")->getCommande($idCmd);
@@ -24,9 +24,9 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Modification de la commande -  N°<?php 
-                    echo $commande->idCommande. '  '. ucfirst($commande->nom).' '.ucfirst($commande->prenom); ?>
-                    
+                    Modification de la commande - N°<?php
+                    echo $commande->idCommande . '  ' . ucfirst($commande->nom) . ' ' . ucfirst($commande->prenom); ?>
+
                 </h4>
             </div>
             <div class="modal-body" id="idContent">
@@ -39,10 +39,10 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
 
                                 <div class="profil-user">
                                     <label for="inputEmail">Nom</label>
-                                    <input type="text" class="form-control" id="inputNom" value="<?= $commande->nom; 
-                                    ?>" placeholder="Nom" disabled >
+                                    <input type="text" class="form-control" id="inputNom" value="<?= $commande->nom;
+                                    ?>" placeholder="Nom" disabled>
                                     <label for="inputEmail">Prenom </label>
-                                    <input type="text" class="form-control" id="inputPrenom" value="<?= 
+                                    <input type="text" class="form-control" id="inputPrenom" value="<?=
                                     $commande->prenom; ?>" placeholder="Prenom" disabled>
 
                                 </div>
@@ -51,16 +51,20 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
                             <div class="form-group">
 
                                 <label for="inputEmail">Code postal Facturation</label>
-                                <input type="text" class="form-control" id="inputCod" value="<?= $commande->codePostalFacturation; ?>" placeholder="Adresse">
+                                <input type="text" class="form-control" id="inputCod"
+                                       value="<?= $commande->codePostalFacturation; ?>" placeholder="Adresse">
                                 <label for="inputEmail">Ville Facturation</label>
-                                <input type="text" class="form-control" id="inputVilleFact" value="<?= $commande->villeFacturation; ?>" placeholder="Adresse">
+                                <input type="text" class="form-control" id="inputVilleFact"
+                                       value="<?= $commande->villeFacturation; ?>" placeholder="Adresse">
                                 <label for="inputEmail">Adresse Facturation</label>
-                                <input type="text" class="form-control" id="inputAdresseFact" value="<?= $commande->adresseFacturation; ?>" placeholder="Adresse">
+                                <input type="text" class="form-control" id="inputAdresseFact"
+                                       value="<?= $commande->adresseFacturation; ?>" placeholder="Adresse">
                                 <label for="inputEmail">Pays Facturation</label>
-                                <input type="text" class="form-control" id="inputPaysFact" value="<?= $commande->paysFacturation; ?>" placeholder="Adresse">
+                                <input type="text" class="form-control" id="inputPaysFact"
+                                       value="<?= $commande->paysFacturation; ?>" placeholder="Adresse">
                                 <label for="inputEmail">Commentaire </label>
-                                <textarea class="form-control" name="commentaire" id="" rows="2"><?= 
-            $commande->commentaireLivraison; ?></textarea>
+                                <textarea class="form-control" name="commentaire" id="" rows="2"><?=
+                                    $commande->commentaireLivraison; ?></textarea>
                                 <br> <br>
 
                             </div>
@@ -71,14 +75,17 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
                             <div class="form-group">
                                 <h4>Commande</h4>
                                 <label for="inputEmail">ID Commande</label>
-                                <input type="text" class="form-control" id="inputIdCmd" value="<?= 
+                                <input type="text" class="form-control" id="inputIdCmd" value="<?=
                                 $commande->idCommande; ?>" placeholder="Adresse" disabled>
                                 <label for="inputEmail">Quantité(s)</label>
-                                <input type="text" class="form-control" id="inputQuantite" value="<?= $commande->quantite; ?>" placeholder="Quantités">
+                                <input type="text" class="form-control" id="inputQuantite"
+                                       value="<?= $commande->quantite; ?>" placeholder="Quantités">
                                 <label for="inputEmail">Prix HT</label>
-                                <input type="text" class="form-control" id="inputPrixHt" value="<?= $commande->prixHT; ?>" placeholder="Prix HT">
+                                <input type="text" class="form-control" id="inputPrixHt"
+                                       value="<?= $commande->prixHT; ?>" placeholder="Prix HT">
                                 <label for="inputEmail">Prix TTC</label>
-                                <input type="text" class="form-control" id="inputPrixttc" value="<?= $commande->prixTTC; ?>" placeholder="Prix TTC">
+                                <input type="text" class="form-control" id="inputPrixttc"
+                                       value="<?= $commande->prixTTC; ?>" placeholder="Prix TTC">
                                 <label for="inputEmail">Frais de Livraison</label>
                                 <input type="text" class="form-control" id="inputFrais"
                                        value="<?= $commande->fraisLivraisonTTC; ?>" placeholder="Frais de livraison">
@@ -104,6 +111,22 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
             </div>
             <?php
             break;
+        case "commandeSupp":
+            $idCmd = $_POST["idObjet"];
+            $result = $app->getTable("Commande")->delete($idCmd);
+            echo $result;
+            break;
+        case "clientSupp":
+            $idClient = $_POST["idObjet"];
+            $result = $app->getTable("Client")->delete($idClient);
+            echo $result;
+            break;
+        case "formatSupp":
+            $idForamt = $_POST["idObjet"];
+            $result = $app->getTable("Produit")->deleteFromat($idForamt);
+            echo $result;
+            break;
+        
         default:
             echo "default";
             break;

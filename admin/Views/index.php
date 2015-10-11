@@ -6,6 +6,15 @@
         <div class="col-lg-12">
             <h1 class="page-header">Dashboard</h1>
         </div>
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="../../index.php">Accueil PhotoExpresso</a></li>
+                <li class="active">Dashboard</li>
+            </ol>
+        </div>
+        <div class="col-lg-12">
+            <?php include ROOT."/public/includes/notifications.php";  ?>
+        </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
@@ -39,7 +48,7 @@
                             <?php
                             if (isset($commandes)) {
                                 foreach ($commandes as $cmd) {
-                                    echo "<tr>
+                                    echo "<tr  id='ligne-commande-{$cmd->idCommande}'>
                                                   <td>{$cmd->idCommande}</td>
                                                   <td>{$cmd->nom} - {$cmd->prenom}</td>
                                                   <td>{$cmd->quantite}</td>
@@ -77,7 +86,7 @@
                 <div class="panel-heading">
                     <i class="fa fa-user"></i> Clients
                             <span class="txt-right"> 
-                                <a href="index.php?p=clients" class="btn  btn-default btn-xs">Afficher Tout</a>
+                                <a href="index.php?p=users" class="btn  btn-default btn-xs">Afficher Tout</a>
                             </span>
                 </div>
                 <div class="panel-body">
@@ -99,7 +108,7 @@
                             <?php
                             if (isset($clients)) {
                                 foreach ($clients as $client) {
-                                    echo "<tr>
+                                    echo "<tr id='ligne-client-{$client->idPersonne}'>
                                                   <td>{$client->idPersonne}</td>
                                                   <td>{$client->nom}</td>
                                                   <td>{$client->prenom}</td>
@@ -147,7 +156,7 @@
                             </button>
                             <ul class="dropdown-menu pull-right" role="menu">
                                 <li>
-                                    <a href="index.php?p=formats">Afficher Tout</a>
+                                    <a href="index.php?p=produits">Afficher Tout</a>
                                 </li>
                                 <li>
                                     <a href="index.php?p=ajout_format">Ajouter </a>
@@ -174,7 +183,7 @@
                             <?php
                             if (isset($formats)) {
                                 foreach ($formats as $format) {
-                                    echo "<tr>
+                                    echo "<tr id='ligne-format-{$format->idFormats}'>
                                                   <td>{$format->idFormats}</td>
                                                   <td>{$format->libelleFormat}</td>
                                                   <td>{$format->hauteur}</td>

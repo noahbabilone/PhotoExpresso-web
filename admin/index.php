@@ -1,9 +1,9 @@
 <?php
 
-    session_start();
-    if (isset($_SESSION['auth'])) {
-          header('Location: public/index.php');      
-    }
+session_start();
+if (isset($_SESSION['auth'])) {
+    header('Location: public/index.php');
+}
 
 ?>
 
@@ -54,6 +54,11 @@
                     <form role="form" method="" id="connexionAdmin">
                         <fieldset>
                             <div class="form-group">
+                                <p class="message-error hide text-danger">
+                                    Votre login ou Mot de passe est incorrecte !!
+                                </p>
+                            </div>
+                            <div class="form-group">
                                 <input class="form-control" placeholder="Pseudo" name="username" type="text"
                                        id="username" autocomplete="on" required>
                             </div>
@@ -87,7 +92,7 @@
 <!-- Custom Theme JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript">
-     $("#connexionAdmin").submit(function (e) {
+    $("#connexionAdmin").submit(function (e) {
         e.preventDefault();
 
         var username = $("#username").val();
@@ -103,10 +108,16 @@
                 data: dataString,
                 cache: false,
                 success: function (data) {
-                    console.log(data);
+//                    console.log(data);
                     var resultat = $.parseJSON(data);
                     if (resultat.isConnected) {
                         window.location.href = 'public/index.php';
+                    } else {
+                        $(".message-error").removeClass("hide");
+
+                        $('.form-group').each(function () {
+                            $(this).addClass("has-error");
+                        });
                     }
                 }
             });

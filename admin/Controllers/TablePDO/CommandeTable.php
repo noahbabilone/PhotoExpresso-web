@@ -45,8 +45,8 @@ class CommandeTable extends TablePDO
 
     }
 
-    
- public function getCommande($idCommande)
+
+    public function getCommande($idCommande)
     {
         return $this->db->query("SELECT cmd.idCommande,  cmd.quantite, cmd.prixTTC, cmd.prixHT, cmd.tva, cmd.fraisLivraisonHT, cmd.fraisLivraisonTTC,
                                  e.libelle,p.nom,p.prenom, p.codePostal, clt.adresseFacturation,clt.codePostalFacturation,clt.villeFacturation,clt.paysFacturation,clt.commentaireLivraison,
@@ -56,21 +56,15 @@ class CommandeTable extends TablePDO
                                 LEFT JOIN livraison l ON cmd.idLivraison = l.idLivraison 
                                 LEFT JOIN personne p ON clt.idClient= p.idPersonne 
                                 WHERE cmd.idCommande ='{$idCommande}'", get_class($this),
-                true);
+            true);
 
     }
 
-    public function delete($idCommande = 1)
+    public function delete($idCommande)
     {
-        return $this->query("SELECT cmd.idCommande, p.nom,p.prenom, p.codePostal, cmd.quantite, cmd.prixTTC, e.libelle 
-                              FROM commande cmd LEFT JOIN client clt ON cmd.idClient = clt.idClient 
-                              LEFT JOIN etatcommande e ON cmd.idEtat = e.id 
-                              LEFT JOIN livraison l ON cmd.idLivraison = l.idLivraison 
-                              LEFT JOIN personne p ON clt.idClient= p.idPersonne 
-                              WHERE cmd.idEtat ='{$idCommande}' ORDER BY cmd.idCommande DESC");
-
+        $result= $this->query("DELETE FROM commande WHERE idCommande='{$idCommande}'");
+        return $result?true:false;
     }
-
 
     public function update($idCommande = 1)
     {

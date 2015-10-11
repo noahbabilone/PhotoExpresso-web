@@ -1,14 +1,21 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Dashboard</h1>
+            <h1 class="page-header">Produits</h1>
+        </div>
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="../../index.php">Accueil PhotoExpresso</a></li>
+                <li><a href="../index.php">Dashboard</a></li>
+                <li class="active">Produits</li>
+            </ol>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
 
     <div class="row">
-        <div class="col-lg-11">
+        <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-shopping-cart fa-fw"></i> Produits
@@ -39,7 +46,7 @@
                                 <?php
                                 if (isset($formats)) {
                                     foreach ($formats as $format) {
-                                        echo "<tr>
+                                        echo "<tr id='ligne-format-{$format->idFormats}'>
                                                   <td>{$format->idFormats}</td>
                                                   <td>{$format->libelleFormat}</td>
                                                   <td>{$format->hauteur}</td>
