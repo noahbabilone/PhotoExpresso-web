@@ -25,7 +25,56 @@
 
 <body>
 
- <?php require_once 'nav.php'; ?>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Photo<span class="text-primary">Expresso</span></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">
+                        <i class="glyphicon glyphicon-home"></i>
+                    </a></li>
+                <li><a href="presentation.php">Présentation</a></li>
+                <li><a href="contact.php">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" title="Connexion"> Connexion</a></li>
+                <li><a href="#" title="Se connecter à mon compte">Inscription</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       title="Premium Bootstrap Themes &amp; Templates"><i class="glyphicon glyphicon-user"></i><b
+                            class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#s"><i class="glyphicon glyphicon-user"></i> Mon Compte</a></li>
+                        <li><a href="#s"><i class="glyphicon glyphicon-info-sign"></i> Autres</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<header class="sb-page-header">
+    <div class="container">
+        <h1>Impression photo </h1>
+
+        <p>A simple, unstyled, shop item page template featuring Bootstrap snippets from Bootsnipp.</p>
+    </div>
+</header>
 
 <div class="container">
     <ol class="breadcrumb">
@@ -39,9 +88,7 @@
     <div class="row">
         <div class="col-md-7">
             <form class="form-horizontal" role="form" method="post" action="index.php">
-                <div class="jumbotron">
                 <div class="form-group">
-                    
                     <label for="name" class="col-sm-2 control-label">Nom</label>
 
                     <div class="col-sm-10">
@@ -79,18 +126,15 @@
                         <textarea class="form-control" rows="4" name="message"></textarea>
                     </div>
                 </div>
-                    
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
                         <input id="submit" name="submit" type="submit" value="Envoyer" class="btn btn-primary">
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
                         <! Will be used to display an alert to the user>
                     </div>
-                </div>
                 </div>
             </form>
             <!--///-->
@@ -107,7 +151,6 @@
                 <br/><span style="font-size: 9px;"><a href="http://www.regiohelden.de/google-maps/"
                                                       style="font-size: 9px;">Google Maps Script</a> by <a
                         href="http://www.regiohelden.de/" style="font-size: 9px;">RegioHelden</a></span></div>
-           <div class="jumbotron">
             <h3>Photo Expresso</h3>
 
             <p class="lead">
@@ -118,11 +161,16 @@
             </p>
         </div>
     </div>
-    </div>
 
     <hr>
     <!--Footer-->
- <?php include 'footer.php'; ?>
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; <a href="group1.estiam.com">Estiam Groupe-1 </a>. 2015</p>
+            </div>
+        </div>
+    </footer>
 </div>
 <!-- /.container -->
 
