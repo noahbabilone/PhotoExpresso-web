@@ -1,4 +1,4 @@
-<?php
+    <?php
 define('ROOT', $_SERVER['DOCUMENT_ROOT'] . "admin");
 require ROOT . '/public/App.php';
 
@@ -12,6 +12,8 @@ $app = App::getInstance();
 $auth = new DBAuth($app->getDb());
 if (!$auth->logged()) {
     $auth->forbidden();
+    header('location: ../index.php');
+
 }
 
 $controller = new \AppController\UsersController();
@@ -21,6 +23,7 @@ if (isset($_GET['p'])) {
     $page = $_GET['p'];
 } else {
     $page = 'dashboard';
+    
 }
 
 switch ($page) {

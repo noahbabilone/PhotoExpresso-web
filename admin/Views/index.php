@@ -20,7 +20,70 @@
     <!-- /.row -->
 
     <div class="row">
+        
         <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-shopping-cart fa-fw"></i> Commandes
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <a href="index.php?p=commandes" class="btn  btn-default btn-xs">Afficher Tout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <!--Contenu-->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom Client</th>
+                                <th>Quantité(s)</th>
+                                <th>Prix HTTC</th>
+                                <th>Etat</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            if (isset($commandes)) {
+                                foreach ($commandes as $cmd) {
+                                    echo "<tr  id='ligne-commande-{$cmd->idCommande}'>
+                                                  <td id='td-cmd-id-{$cmd->idCommande}'>{$cmd->idCommande}</td>
+                                                  <td id='td-cmd-nomP-{$cmd->idCommande}'>{$cmd->nom} - 
+                                                  {$cmd->prenom}</td>
+                                                  <td id='td-cmd-quantite-{$cmd->idCommande}'>{$cmd->quantite}</td>
+                                                  <td id='td-cmd-prixTTC-{$cmd->idCommande}'>{$cmd->prixTTC} €</td>
+                                                  <td id='td-cmd-libelle-{$cmd->idCommande}'>{$cmd->libelle}</td>
+                                                <td>
+                                                    <button type='button'  class='btn btn-xs btn-info editObjet' 
+                                                            id='cmd-{$cmd->idCommande}' data-toggle='modal' name='commandeEdit' data-target='#editObjet'   >
+                                                       <i class='fa fa-cog'></i>
+                                                        </button>
+                                                        <input type='hidden' class='val-cmd-{$cmd->idCommande}' 
+                                                        value='{$cmd->idCommande}' />
+                                                        
+                                                        <button type='button'  class='btn btn-xs btn-danger suppObjet' name='suppressionCommande' id='cmd-{$cmd->idCommande}'
+                                                        data-toggle='modal' data-target='#suppObjet'>
+                                                         <i class='fa fa-trash-o'></i>  
+                                                    </button>
+                                             </td>
+                                        </tr>";
+
+                                }
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!--col-lg-6-->
+<div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-user"></i> Clients
@@ -80,69 +143,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-shopping-cart fa-fw"></i> Commandes
-                    <div class="pull-right">
-                        <div class="btn-group">
-                            <a href="index.php?p=commandes" class="btn  btn-default btn-xs">Afficher Tout</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <!--Contenu-->
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom Client</th>
-                                <th>Quantité(s)</th>
-                                <th>Prix HTTC</th>
-                                <th>Etat</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            if (isset($commandes)) {
-                                foreach ($commandes as $cmd) {
-                                    echo "<tr  id='ligne-commande-{$cmd->idCommande}'>
-                                                  <td>{$cmd->idCommande}</td>
-                                                  <td>{$cmd->nom} - {$cmd->prenom}</td>
-                                                  <td>{$cmd->quantite}</td>
-                                                  <td>{$cmd->prixTTC} €</td>
-                                                  <td>{$cmd->libelle}</td>
-                                                <td>
-                                                    <button type='button'  class='btn btn-xs btn-info editObjet' 
-                                                            id='cmd-{$cmd->idCommande}' data-toggle='modal' name='commandeEdit' data-target='#editObjet'   >
-                                                       <i class='fa fa-cog'></i>
-                                                        </button>
-                                                        <input type='hidden' class='val-cmd-{$cmd->idCommande}' 
-                                                        value='{$cmd->idCommande}' />
-                                                        
-                                                        <button type='button'  class='btn btn-xs btn-danger suppObjet' name='suppressionCommande' id='cmd-{$cmd->idCommande}'
-                                                        data-toggle='modal' data-target='#suppObjet'>
-                                                         <i class='fa fa-trash-o'></i>  
-                                                    </button>
-                                             </td>
-                                        </tr>";
-
-                                }
-                            }
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-        <!--col-lg-6-->
-
+        </div>  
         
         <!-- </div>-->
         <div class="col-lg-6">

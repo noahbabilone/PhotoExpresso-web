@@ -31,15 +31,31 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
             $result = $app->getTable("Produit")->deleteFromat($idForamt);
             echo $result;
             break;
+        case "commande-update":
+            $commande = $app->getTable("Commande");
+            $codePostalFacturation = $_POST['codePostalFacturation'];
+            $adresseFacturation = $_POST['adresseFacturation'];
+            $villeFacturation = $_POST['villeFacturation'];
+            $paysFacturation = $_POST['paysFacturation'];
+            $idEtat = $_POST['idEtat'];
+            $quantite = $_POST['quantite'];
+            $prixTTC = $_POST['prixTTC'];
+            $fraisLivraisonTTC = $_POST['fraisLivraisonTTC'];
+            $adresseFacturation = $_POST['adresseFacturation'];
+            $bonLivraison = $_POST['bonLivraison'];
+            $idCmd = $_POST["idObjet"];
+            $result = $commande->updateCommande($idCmd, $quantite, $prixTTC,$idEtat);
+            echo $result;
+            break;
         case "addFormat-insert":
-            $titre=$_POST['titre'];
-            $hauteur=$_POST['hauteur'];
-            $largeur=$_POST['largeur'];
-            $prix=$_POST['prix'];
-            $idTypePapier=$_POST['idTypePapier'];
-            $idTypeFormat=$_POST['idTypeFormat'];
+            $titre = $_POST['titre'];
+            $hauteur = $_POST['hauteur'];
+            $largeur = $_POST['largeur'];
+            $prix = $_POST['prix'];
+            $idTypePapier = $_POST['idTypePapier'];
+            $idTypeFormat = $_POST['idTypeFormat'];
             //$titre,$hauteur,$largeur,$prix,$idTypePapier,$idTypeFormat
-            $result = $app->getTable("Produit")->addFormat($titre,$hauteur,$largeur,$prix,$idTypePapier,$idTypeFormat);
+            $result = $app->getTable("Produit")->addFormat($titre, $hauteur, $largeur, $prix, $idTypePapier, $idTypeFormat);
             echo $result;
             break;
         case "formatEdit":
@@ -136,7 +152,7 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
                             <input type="text" class="form-control" id="inputHauteurFormat"
                                    placeholder="Hauteur (exemple:24)">
                         </div>
-                    </div>             
+                    </div>
                     <div class="form-group">
                         <label for="inputLargeurFormat" class="control-label col-xs-2">Largeur</label>
 
@@ -287,6 +303,8 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
             $cmd = $app->getTable("Commande");
             $commande = $cmd->getCommande($idCmd);
             ?>
+            <input type="hidden" name="commande-update" id="idAction" value="<?= $idCmd; ?>">
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
@@ -299,6 +317,16 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
             <div class="modal-body" id="idContent">
                 <div class="row">
                     <form>
+                        <div class="col-lg-12">
+
+                            <div class="alert alert-warning hide alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">&times;</button>
+                                <p> Veuillez remplir tous les champs du formulaire!!
+                                    <span class="message-warning"></span>
+                                </p>
+                            </div>
+                        </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <img src="../public/img/profil.png" alt="profil" id="profil" class="img-thumbnail">
@@ -315,20 +343,24 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
                             </div>
 
                             <div class="form-group">
-                                <label for="inputEmail">Code postal Facturation</label>
-                                <input type="text" class="form-control" id="inputCod"
+                                <label for="codePostalFacturation">Code postal Facturation</label>
+                                <input type="text" class="form-control" id="codePostalFacturation"
                                        value="<?= $commande->codePostalFacturation; ?>" placeholder="Adresse">
-                                <label for="inputEmail">Ville Facturation</label>
-                                <input type="text" class="form-control" id="inputVilleFact"
+
+                                <label for="villeFacturation">Ville Facturation</label>
+                                <input type="text" class="form-control" id="villeFacturation"
                                        value="<?= $commande->villeFacturation; ?>" placeholder="Adresse">
-                                <label for="inputEmail">Adresse Facturation</label>
-                                <input type="text" class="form-control" id="inputAdresseFact"
+
+                                <label for="adresseFacturation">Adresse Facturation</label>
+                                <input type="text" class="form-control" id="adresseFacturation"
                                        value="<?= $commande->adresseFacturation; ?>" placeholder="Adresse">
-                                <label for="inputEmail">Pays Facturation</label>
-                                <input type="text" class="form-control" id="inputPaysFact"
+
+                                <label for="paysFacturation">Pays Facturation</label>
+                                <input type="text" class="form-control" id="paysFacturation"
                                        value="<?= $commande->paysFacturation; ?>" placeholder="Adresse">
-                                <label for="inputEmail">Commentaire </label>
-                                <textarea class="form-control" name="commentaire" id="" rows="2"><?=
+
+                                <label for="commentaireLivraison">Commentaire </label>
+                                <textarea class="form-control" name="commentaire" id="commentaireLivraison" rows="2"><?=
                                     $commande->commentaireLivraison; ?></textarea>
 
                             </div>
@@ -336,38 +368,37 @@ if (isset($_POST["action"]) && !empty($_POST["action"])) {
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <h4>Commande ID: <?= $commande->idCommande; ?></h4>
-                                <label for="inputEmail">Etat Commande</label>
-                                <select name="inputEtat" id="inputEtat" class="form-control">
+                                <label for="idEtat">Etat Commande</label>
+                                <select name="inputEtat" id="idEtat" class="form-control">
                                     <?php
                                     $etatCommandes = $cmd->etatCommandeAll();
                                     foreach ($etatCommandes as $etat) {
                                         if ($etat->id == $commande->idEtat) {
-                                            echo "<option selected>{$etat->libelle}</option>";
+                                            echo "<option  value='$etat->id' selected>{$etat->libelle}</option>";
 
                                         } else {
-                                            echo "<option>{$etat->libelle}</option>";
+                                            echo "<option value='$etat->id'>{$etat->libelle}</option>";
                                         }
                                     }
                                     ?>
                                 </select>
 
-                                <label for="inputEmail">Quantité(s)</label>
-                                <input type="text" class="form-control" id="inputQuantite"
+                                <label for="quantite">Quantité(s)</label>
+                                <input type="text" class="form-control" id="quantite"
                                        value="<?= $commande->quantite; ?>" placeholder="Quantités">
-                                <label for="inputEmail">Prix HT</label>
-                                <input type="text" class="form-control" id="inputPrixHt"
-                                       value="<?= $commande->prixHT; ?>" placeholder="Prix HT">
-                                <label for="inputEmail">Prix TTC</label>
-                                <input type="text" class="form-control" id="inputPrixttc"
+
+                                <label for="prixTTC">Prix TTC</label>
+                                <input type="text" class="form-control" id="prixTTC"
                                        value="<?= $commande->prixTTC; ?>" placeholder="Prix TTC">
-                                <label for="inputEmail">Frais de Livraison</label>
-                                <input type="text" class="form-control" id="inputFrais"
+
+                                <label for="fraisLivraisonTTC">Frais de Livraison</label>
+                                <input type="text" class="form-control" id="fraisLivraisonTTC"
                                        value="<?= $commande->fraisLivraisonTTC; ?>" placeholder="Frais de livraison">
-                                <label for="inputEmail">Adresse de livraison</label>
-                                <input type="text" class="form-control" id="inputAdresseL"
+                                <label for="adresseFacturation">Adresse de livraison</label>
+                                <input type="text" class="form-control" id="adresseFacturation"
                                        value="<?= $commande->adresseFacturation; ?>" placeholder="Adresse de livraison">
-                                <label for="inputEmail">Bon de livraison</label>
-                                <input type="text" class="form-control" id="inputBonLivraison"
+                                <label for="bonLivraison">Bon de livraison</label>
+                                <input type="text" class="form-control" id="bonLivraison"
                                        value="<?= $commande->bonLivraison; ?>" placeholder="Bon de livraison">
                             </div>
                         </div>

@@ -35,13 +35,13 @@ class UsersController extends Controller
     public function commandes()
     {
         $commandes = $this->Commande->all();
-        $this->render('commandes', compact("commandes"));
+        $this->render('commandesView', compact("commandes"));
     }
     
     public function getCommande($idCommande)
     {
         $commande = $this->Commande->getCommande($idCommande);
-        $this->popup('viewCommande', compact("commande"));
+        $this->popup('commandesView', compact("commande"));
     }
 
     /*

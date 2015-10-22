@@ -87,19 +87,3 @@
 <!-- /.container-fluid -->
 
 
-<script type="text/javascript">
-            $('#example').DataTable({
-            "aoColumns": [
-                {"aTargets": [1]},
-                {"aTargets": [2]}, /* url-Img */
-                {"aTargets": [3]}
-            ],
-            "processing": true,
-            "serverSide": true,
-            "sAjaxSource": "listes_commandes.php",
-
-
-        });
-    
-</script>
-

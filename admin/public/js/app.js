@@ -82,7 +82,9 @@ $(document).ready(function () {
     $("#confirmEdit").click(function (e) {
 
         var nameAction = $.trim($("#idAction").attr("name")),
-            idObjet = -1, donnees;
+            idObjet = -1;
+        console.log("confirmEdit");
+
         switch (nameAction) {
             case "addFormat-insert":
                 var titre = $("#inputTitreFormat").val(),
@@ -137,6 +139,97 @@ $(document).ready(function () {
 
                 }
                 break;
+
+            case "commande-update":
+                idObjet = $.trim($("#idAction").val());
+                var codePostalFacturation = $("#codePostalFacturation").val(),
+                    adresseFacturation = $("#adresseFacturation").val(),
+                    villeFacturation = $("#villeFacturation").val(),
+                    paysFacturation = $("#paysFacturation").val(),
+                    commentaireLivraison = $("#commentaireLivraison").val(),
+                    idEtat = $("#idEtat").val(),
+                    quantite = $("#quantite").val(),
+                    prixTTC = $("#prixTTC").val(),
+                    fraisLivraisonTTC = $("#fraisLivraisonTTC").val(),
+                    adresseFacturation = $("#adresseFacturation").val(),
+                    bonLivraison = $("#bonLivraison").val();
+
+                /* console.log(codePostalFacturation+adresseFacturation+paysFacturation);
+                 console.log(commentaireLivraison+idEtat+quantite);
+                 console.log(prixTTC+quantite);
+                 console.log(fraisLivraisonTTC+adresseFacturation+bonLivraison);
+                 */
+                if (
+                    codePostalFacturation != "" && adresseFacturation != "" && villeFacturation != "" &&
+                    paysFacturation != "" && idEtat != "" && quantite != "" && prixTTC != "" && fraisLivraisonTTC != ""
+                    && bonLivraison != ""
+                ) {
+
+
+                    $.post("ajaxphp/ajax.php", {
+                        action: nameAction,
+                        codePostalFacturation: codePostalFacturation,
+                        adresseFacturation: adresseFacturation,
+                        villeFacturation: villeFacturation,
+                        paysFacturation: paysFacturation,
+                        idEtat: idEtat,
+                        quantite: quantite,
+                        prixTTC: prixTTC,
+                        fraisLivraisonTTC: fraisLivraisonTTC,
+                        bonLivraison: bonLivraison,
+                        idObjet: idObjet
+                    }, function (data) {
+
+                        if (data == true) {
+                            var message = "Votre modification a été enregistrée !!";
+                            $('#editObjet').modal('hide');
+
+                            var libelleEtat = "";
+                            if (idEtat == 1) {
+                                libelleEtat = "En attente d'Impression";
+                            } else if (idEtat == 2) {
+                                libelleEtat = "Imprimée";
+                            } else if (idEtat == 3) {
+                                libelleEtat = "Expediée";
+                            } else if (idEtat == "4") {
+                                libelleEtat = "Annulée";
+                            }
+                            
+                            $("#td-cmd-quantite-" + idObjet).text(quantite);
+                            $("#td-cmd-prixTTC-" + idObjet).text(prixTTC);
+                            $("#td-cmd-libelle-" + idObjet).text(libelleEtat);
+
+                            if ($(".alert-success").hasClass("hide")) {
+                                $(".message-success").html(message);
+                                $(".alert-success").removeClass("hide");
+                                $(".alert-success").delay(10000).fadeOut(300, function () {
+                                    $(this).addClass("hide");
+                                });
+
+                            } else {
+                                $(".message-success").html(message);
+                                $(".alert-success").delay(10000).fadeOut(1000, function () {
+                                    $(this).addClass("hide");
+                                });
+
+                            }
+                            $(".alert-warning").addClass("hide");
+
+                        } else {
+                            console.log("non");
+                        }
+
+
+                    });
+
+
+                } else {
+
+                    $(".alert-warning").removeClass("hide");
+
+                }
+
+                break;
         }
 
 
@@ -162,7 +255,7 @@ $(document).ready(function () {
                     break;
                 case "suppressionFormat":
                     action = "format";
-                    message = "<b>Le format N°" + idObjet + "</b> a été supprimée !!"
+                    message = "<b>Le format N°" + idObjet + "</b> a été supprimé !!"
 
                     break;
                 default:
